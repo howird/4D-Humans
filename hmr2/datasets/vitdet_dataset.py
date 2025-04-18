@@ -10,8 +10,8 @@ from .utils import (convert_cvimg_to_tensor,
                     expand_to_aspect_ratio,
                     generate_image_patch_cv2)
 
-DEFAULT_MEAN = 255. * np.array([0.485, 0.456, 0.406])
-DEFAULT_STD = 255. * np.array([0.229, 0.224, 0.225])
+DEFAULT_MEAN = 255. * torch.tensor([0.485, 0.456, 0.406]).view(3, 1, 1)
+DEFAULT_STD = 255. * torch.tensor([0.229, 0.224, 0.225]).view(3, 1, 1)
 
 class ViTDetDataset(torch.utils.data.Dataset):
 

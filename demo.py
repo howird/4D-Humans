@@ -4,6 +4,7 @@ import argparse
 import os
 import cv2
 import numpy as np
+import debugpy
 
 from hmr2.configs import CACHE_DIR_4DHUMANS
 from hmr2.models import HMR2, download_models, load_hmr2, DEFAULT_CHECKPOINT
@@ -103,8 +104,8 @@ def main():
                 # Get filename from path img_path
                 img_fn, _ = os.path.splitext(os.path.basename(img_path))
                 person_id = int(batch['personid'][n])
-                white_img = (torch.ones_like(batch['img'][n]).cpu() - DEFAULT_MEAN[:,None,None]/255) / (DEFAULT_STD[:,None,None]/255)
-                input_patch = batch['img'][n].cpu() * (DEFAULT_STD[:,None,None]/255) + (DEFAULT_MEAN[:,None,None]/255)
+                white_img = (torch.ones_like(batch['img'][n]).cpu() - DEFAULT_MEAN/255) / (DEFAULT_STD/255)
+                input_patch = batch['img'][n].cpu() * (DEFAULT_STD/255) + (DE[:,None,None]FAULT_MEAN/255)
                 input_patch = input_patch.permute(1,2,0).numpy()
 
                 regression_img = renderer(out['pred_vertices'][n].detach().cpu().numpy(),
